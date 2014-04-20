@@ -25,6 +25,9 @@ Luego copia la carpeta gecutimg y su contenido en la raíz de tu proyecto, en tu
 <!-- Kinetic -->
 <script src="../kinetic-v5.1.0.min.js"></script>
 ```
-Gecobject provee el archivo  ` autoload.php ` que se encarga de cargar automáticamente los archivos necesarios para el  correcto funcionamiento de la librería. Si usa una versión de php anterior a la 5.3 no funcionara correctamente el autoload ni la librería ya que esta implementa ` namespace ` que están presentes solo a partir de php 5.3 o superior. Sin embargo si llegase a presentar problemas en la carga de archivos y estas utilizando la versión correcta de php revisa los comentarios en el archivo [autoload.php](https://github.com/gecoreto/gecobject/blob/master/autoload.php).
+En tu archivos html es necesario tener:
+- Un contenedor donde se creara el canvas para manipular la imagen. 
+- un boton para iniciar el corte de la imagen.
+- Un boton para finalizar el corte de la imagen.
 
 Finalmente un ` require 'gecobject/config.php'; ` para cargar la librería y todo debería funcionar!
