@@ -1,0 +1,48 @@
+@import url(http://fonts.googleapis.com/css?family=McLaren);
+body{
+    font-family: 'McLaren', cursive;
+    background-color: #fff; 
+background-image: 
+linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+linear-gradient(#eee .1em, transparent .1em);
+background-size: 100% 1.2em;
+}
+#contenido{
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1{
+    text-align: center;
+    color: #e50;
+    text-shadow: 0 2px black;
+    text-transform: uppercase; 
+    font-size: 300%;
+    border-bottom: solid;
+}
+
+#contenido #miCanvas{
+    padding-left: 10%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#contenido #botones{
+    padding-left: 11%;
+    width: 500px;
+    margin-bottom: 10px;
+}
+
+#botones button{
+    color: #fff;
+    padding: 10px;
+    background: #006699;
+    border-style: none;
+    border-radius: 5px;
+    font-family: 'McLaren', cursive;
+    cursor: pointer;
+}
+#botones button:hover{
+    background: #e50;
+}
