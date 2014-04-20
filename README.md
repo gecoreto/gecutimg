@@ -48,4 +48,4 @@ Finalmente le pasamos los 4 identificadores("los id") nombrados anteriormente co
 
 Y Listo!
 
-[ver demo](http://gecutimg.gecoreto.cu.cc)
+Ver un ejemplo: [Demo](http://gecutimg.gecoreto.cu.cc)
