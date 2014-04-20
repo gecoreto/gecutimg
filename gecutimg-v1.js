@@ -5,20 +5,23 @@
  * @author David Garzon <stylegeco@gmail.com>
  */
 var gecutimg = (function() {
-    var rect, circleA, circleB, imgW, imgH;
+    var rect, circleA, circleB, imgW, imgH, extension;
     function letsCut(cutBtn, endBtn, idImg, idContainer) {
-        $("body").append('<canvas id="canvasFinal"></canvas>');
-        $("#canvasFinal").css({display:"none"});
-        var stage;
-        var layer;
-        cutBtn = "#" + cutBtn;
-        endBtn = "#" + endBtn;
-        idImg = "#" + idImg;
-        $(idImg).fadeOut();
+        var stage, layer;
+        var lienzoFinal = document.createElement("CANVAS"); 
+        lienzoFinal.id = "canvasFinal";
+        lienzoFinal.style.display = 'none';
+        document.body.appendChild(lienzoFinal);
+        cutBtn = document.getElementById(cutBtn);
+        endBtn = document.getElementById(endBtn);
+        idImg = document.getElementById(idImg);
+        //Ocultar imagen inicial
+        idImg.style.display = 'none';
         //$(endBtn).fadeOut();
-        var url = $(idImg).attr("src");
+        var url =  idImg.src;
         var img = new Image();
         img.src = url;
+        getExtension(url);
         img.onload = function() {
             //this = a la imagen cargada
             var imgWidth = this.width;
@@ -44,31 +47,49 @@ var gecutimg = (function() {
             stage.add(layer);
         }
 
-        $(cutBtn).on("click", function() {
-           // $(cutBtn).fadeOut();
-           // $(endBtn).fadeIn();
+        cutBtn.onclick = function(e){
+           this.style.display = "none";
             drawCircles(stage, layer);
-        });
+        };
 
-        $(endBtn).on("click", function() {
+        endBtn.onclick = function(e){
             circleA.remove();
             circleB.remove();
             rect.remove();
             layer.draw();
-            var miCanvas = document.getElementsByTagName("canvas");
-            var ctx = miCanvas[0].getContext("2d");
-            var datosDeLaImagen = ctx.getImageData(rect.x(), rect.y(), -imgW, -imgH);
-            var canvasFinal = miCanvas[1];
-            var ctx2 = canvasFinal.getContext("2d");
-            canvasFinal.height = datosDeLaImagen.height;
-            canvasFinal.width = datosDeLaImagen.width;
-            ctx2.putImageData(datosDeLaImagen, 0, 0);
-            var dataUrl = canvasFinal.toDataURL();
-            window.open(dataUrl);
-            rect = null;
-           // $(this).fadeOut();
-          //  $(cutBtn).fadeIn();
-        });
+            try {
+                var miCanvas = document.getElementsByTagName("canvas");
+                var ctx = miCanvas[0].getContext("2d");
+                var datosDeLaImagen = ctx.getImageData(rect.x(), rect.y(), -imgW, -imgH);
+                var canvasFinal = miCanvas[1];
+                var ctx2 = canvasFinal.getContext("2d");
+                canvasFinal.height = datosDeLaImagen.height;
+                canvasFinal.width = datosDeLaImagen.width;
+                ctx2.putImageData(datosDeLaImagen, 0, 0);
+                var dataUrl = canvasFinal.toDataURL(extension);
+                window.open(dataUrl);
+                rect = null;
+                cutBtn.style.display = "inline";
+            } catch (err) {
+                var mensaje = "Esta exception se produce al usar el navegador chrome debido al metodo getImageData(), el navegador piensa que obtienes la imagen de un dominio externo y lo ve como un fallo de seguridad. Prueba usando firefox que no pone problema con esto =). o si no copia los archivos a tu servidor ya sea local o en la red y ya te debe funcionar en cualquier navegador con soporte html5.\n****Exception****\n"+err;
+                alert(mensaje);
+                console.log(mensaje);
+            }
+        };
+    }
+
+    function getExtension(url) {
+        var extensiones_permitidas = new Array(".jpg", ".gif");
+
+        //recupero la extensión de este nombre de archivo 
+        extension = (url.substring(url.lastIndexOf("."))).toLowerCase();
+        //compruebo si la extensión está entre las permitidas 
+        for (var i = 0; i < extensiones_permitidas.length; i++) {
+            if (extensiones_permitidas[i] == extension) {
+                extension = (extensiones_permitidas[i] = ".jpg") ? "image/jpeg" : "image/png";
+                break;
+            }
+        }
     }
 
     function drawCircles(stage, layer) {

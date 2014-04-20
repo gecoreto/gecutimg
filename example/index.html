@@ -15,13 +15,12 @@
             <div id="miCanvas"></div>
             <img src="assets/img/ejemplo.jpg" alt="imagen de ejemplo" id="miImg">
         </div>
-        <script src="assets/js/jquery-1.11.0.min.js"></script>
-        <script src="assets/js/gecutimg.js"></script>
+        <script src="../gecutimg.js"></script>
+        <script src="../kinetic-v5.1.0.min.js"></script>
         <script>
-            $(document).on("ready", function() {
+            (function() {
                 gecutimg.letsCut("ctImg", "ctFin", "miImg", "miCanvas");
-            });
+            })();
         </script>
-        <script src="assets/js/kinetic-v5.1.0.min.js"></script>
     </body>
 </html>
