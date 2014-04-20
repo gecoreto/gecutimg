@@ -36,6 +36,16 @@ Finalmente le pasamos los 4 identificadores("los id") nombrados anteriormente co
 ```javascript
 //Tan pronto se carga la pagina
 (function() {
+    /**
+     * "ctImg" Es el id del boton que iniciara el cortado de la imagen
+     * "ctFin" Es el id del boton que finalizara el cortado de la imagen
+     * "miImg" Es el id de la imagen a cortar
+     * "miCanvas" Es el id del contenedor donde se renderiza el canvas
+     */
     gecutimg.letsCut("ctImg", "ctFin", "miImg", "miCanvas");
 })();
 ```
+
+Y Listo!
+
+[ver demo](http://gecutimg.gecoreto.cu.cc)
