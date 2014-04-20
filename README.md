@@ -25,9 +25,17 @@ Luego copia la carpeta gecutimg y su contenido en la raíz de tu proyecto, en tu
 <!-- Kinetic -->
 <script src="../kinetic-v5.1.0.min.js"></script>
 ```
-En tu archivos html es necesario tener:
+En tu archivos html es necesario tener lo siguiente:
 - Un contenedor donde se creara el canvas para manipular la imagen. 
 - un boton para iniciar el corte de la imagen.
 - Un boton para finalizar el corte de la imagen.
+- Una imagen que sera la que queremos recortar.
 
-Finalmente un ` require 'gecobject/config.php'; ` para cargar la librería y todo debería funcionar!
+Finalmente le pasamos los 4 identificadores("los id") nombrados anteriormente como parametro al metodo ` letsCut() ` de la clase ` Gecutimg ` como se muestra a continuación:
+
+```javascript
+//Tan pronto se carga la pagina
+(function() {
+    gecutimg.letsCut("ctImg", "ctFin", "miImg", "miCanvas");
+})();
+```
