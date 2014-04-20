@@ -78,7 +78,7 @@ var gecutimg = (function() {
     }
 
     function getExtension(url) {
-        var extensiones_permitidas = new Array(".jpg", ".gif");
+        var extensiones_permitidas = new Array(".jpg", ".png");
 
         //recupero la extensión de este nombre de archivo 
         extension = (url.substring(url.lastIndexOf("."))).toLowerCase();
