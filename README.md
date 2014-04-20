@@ -23,9 +23,9 @@ Luego copia la carpeta gecutimg y su contenido en la raíz de tu proyecto, en tu
 
 ```html
 <!-- Gecutimg -->
-<script src="../gecutimg-v1.js"></script>
+<script src="gecutimg-v1.js"></script>
 <!-- Kinetic -->
-<script src="../kinetic-v5.1.0.min.js"></script>
+<script src="kinetic-v5.1.0.min.js"></script>
 ```
 En tu archivos html es necesario tener lo siguiente:
 - Un contenedor donde se creara el canvas para manipular la imagen. 
