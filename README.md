@@ -1,4 +1,4 @@
-gecutimg
+GECUTIMG
 ========
 
 Gecutimg sirve para recortar una imagen seleccionando un pedazo de esta, hace uso de canvas con la libreria kinetic 
@@ -49,3 +49,12 @@ Finalmente le pasamos los 4 identificadores("los id") nombrados anteriormente co
 Y Listo!
 
 Ver un ejemplo: [Demo](http://gecutimg.gecoreto.cu.cc)
+
+## Contribuir
+
+Si quieres ayudarme en el desarrollo de este proyecto no lo dudes, tienes a tu disposición todos los script.
+
+## Sugerencias
+
+- [stylegeco@gmail.com](stylegeco@gmail.com)
+- [@stylegeco](https://twitter.com/stylegeco)
