@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recorte IMG con Canvas</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="assets/css/estilo.css">
+    </head>
+    <body>
+        <div id="contenido">
+            <h1>Recorte de imagenes con canvas</h1>
+            <div id="botones">
+                <button id="ctImg">Cortar Imagen</button>
+                <button id="ctFin">Finalizar Corte</button>
+            </div>
+            <div id="miCanvas"></div>
+            <img src="assets/img/ejemplo.jpg" alt="imagen de ejemplo" id="miImg">
+        </div>
+        <script src="assets/js/jquery-1.11.0.min.js"></script>
+        <script src="assets/js/gecutimg.js"></script>
+        <script>
+            $(document).on("ready", function() {
+                $("#ctImg").trigger("click");
+                gecutimg.letsCut("ctImg", "ctFin", "miImg", "miCanvas");
+            });
+        </script>
+        <script src="assets/js/kinetic-v5.1.0.min.js"></script>
+    </body>
+</html>
