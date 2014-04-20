@@ -19,7 +19,7 @@ h1{
     text-shadow: 0 2px black;
     text-transform: uppercase; 
     font-size: 300%;
-    border-bottom: solid;
+    border-bottom: dashed;
 }
 
 #contenido #miCanvas{
@@ -45,4 +45,18 @@ h1{
 }
 #botones button:hover{
     background: #e50;
+}
+
+footer{
+    background: #e50;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: dashed white;
+    color: white;
+}
+
+footer a{
+    color: #66ccff;
+    text-decoration: none;
 }
