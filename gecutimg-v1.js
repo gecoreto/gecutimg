@@ -17,7 +17,6 @@ var gecutimg = (function() {
         idImg = document.getElementById(idImg);
         //Ocultar imagen inicial
         idImg.style.display = 'none';
-        //$(endBtn).fadeOut();
         var url =  idImg.src;
         var img = new Image();
         img.src = url;
