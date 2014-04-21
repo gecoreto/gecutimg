@@ -28,7 +28,7 @@ Luego copia la carpeta gecutimg y su contenido en la raíz de tu proyecto, en tu
 <script src="kinetic-v5.1.0.min.js"></script>
 ```
 En tu archivos html es necesario tener lo siguiente:
-- Un contenedor donde se creara el canvas para manipular la imagen. 
+- Un contenedor donde se creara el canvas para manipular la imagen.(puede ser un div, section, etc... no es una etiqueta canvas) 
 - un boton para iniciar el corte de la imagen.
 - Un boton para finalizar el corte de la imagen.
 - Una imagen que sera la que queremos recortar.
