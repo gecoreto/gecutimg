@@ -32,8 +32,9 @@ En tu archivos html es necesario tener lo siguiente:
 - un boton para iniciar el corte de la imagen.
 - Un boton para finalizar el corte de la imagen.
 - Una imagen que sera la que queremos recortar.
+- Opcional pudes agregar un input para cargar imagenes dinamicamente.
 
-Finalmente le pasamos los 4 identificadores("los id") nombrados anteriormente como parametro al metodo ` letsCut() ` de la clase ` Gecutimg ` como se muestra a continuación:
+Finalmente le pasamos los cinco o cuatro identificadores("los id") nombrados anteriormente como parametro al metodo ` letsCut() ` de la clase ` Gecutimg ` como se muestra a continuación:
 
 ```javascript
 //Tan pronto se carga la pagina
@@ -43,8 +44,9 @@ Finalmente le pasamos los 4 identificadores("los id") nombrados anteriormente co
      * "ctFin" Es el id del boton que finalizara el cortado de la imagen
      * "miImg" Es el id de la imagen a cortar
      * "miCanvas" Es el id del contenedor donde se renderiza el canvas
+     * "fileImg" Es el id de un input para subir una imagen dinamicamente. (Este parametro no es querido)
      */
-    gecutimg.letsCut("ctImg", "ctFin", "miImg", "miCanvas");
+    gecutimg.letsCut("ctImg", "ctFin", "miImg", "miCanvas", "fileImg");
 })();
 ```
 
