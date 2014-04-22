@@ -6,9 +6,15 @@
  */
 var gecutimg = (function() {
     var rect, circleA, circleB, imgW, imgH, extension;
-    function letsCut(cutBtn, endBtn, idImg, idContainer) {
+    /**
+     * @param String ctImg Es el id del boton que iniciara el cortado de la imagen
+     * @param String ctFin Es el id del boton que finalizara el cortado de la imagen
+     * @param String miImg Es el id de la imagen a cortar
+     * @param String miCanvas Es el id del contenedor donde se renderiza el canvas
+     */
+    function letsCut(cutBtn, endBtn, idImg, idContainer, fileImg) {
         var stage, layer;
-        var lienzoFinal = document.createElement("CANVAS"); 
+        var lienzoFinal = document.createElement("CANVAS");
         lienzoFinal.id = "canvasFinal";
         lienzoFinal.style.display = 'none';
         document.body.appendChild(lienzoFinal);
@@ -17,7 +23,8 @@ var gecutimg = (function() {
         idImg = document.getElementById(idImg);
         //Ocultar imagen inicial
         idImg.style.display = 'none';
-        var url =  idImg.src;
+        //$(endBtn).fadeOut();
+        var url = idImg.src;
         var img = new Image();
         img.src = url;
         getExtension(url);
@@ -46,12 +53,12 @@ var gecutimg = (function() {
             stage.add(layer);
         }
 
-        cutBtn.onclick = function(e){
-           this.style.display = "none";
+        cutBtn.onclick = function(e) {
+            this.style.display = "none";
             drawCircles(stage, layer);
         };
 
-        endBtn.onclick = function(e){
+        endBtn.onclick = function(e) {
             circleA.remove();
             circleB.remove();
             rect.remove();
@@ -70,11 +77,61 @@ var gecutimg = (function() {
                 rect = null;
                 cutBtn.style.display = "inline";
             } catch (err) {
-                var mensaje = "Esta exception se produce al usar el navegador chrome debido al metodo getImageData(), el navegador piensa que obtienes la imagen de un dominio externo y lo ve como un fallo de seguridad. Prueba usando firefox que no pone problema con esto =). o si no copia los archivos a tu servidor ya sea local o en la red y ya te debe funcionar en cualquier navegador con soporte html5.\n****Exception****\n"+err;
+                var mensaje = "Esta exception se produce al usar el navegador chrome debido al metodo getImageData(), el navegador piensa que obtienes la imagen de un dominio externo y lo ve como un fallo de seguridad. Prueba usando firefox que no pone problema con esto =). o si no copia los archivos a tu servidor ya sea local o en la red y ya te debe funcionar en cualquier navegador con soporte html5.\n****Exception****\n" + err;
                 alert(mensaje);
                 console.log(mensaje);
             }
         };
+
+        // Check for the various File API support.
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            //si tiene como parametro el id del input para cargar imagenes dinamicamente
+            if (fileImg) {
+                console.log("Todas las API de FILES son compatibles.");
+                document.getElementById(fileImg).addEventListener('change', handleFileSelect, false);
+            }
+        } else {
+            alert('Las API de FILES no son totalmente compatibles con este navegador. No puedes cargar imagenes  dinamicamente :( ');
+        }
+        //funcion que recibe el evento "onchange" del input para cambiar la imagen dinamicamente
+        function handleFileSelect(evt) {
+            var file = evt.target.files[0]; // FileList object
+
+            var reader = new FileReader();
+
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    var img = new Image();
+                    img.src = e.target.result;
+                    getExtension(e.target.result);
+                    img.onload = function() {
+                        //this = a la imagen cargada
+                        var imgWidth = this.width;
+                        var imgHeight = this.height;
+                        //actualizar escenario nuevo escenario 
+                        stage.setAttrs({
+                            width: imgWidth,
+                            height: imgHeight
+                        });
+                        layer.removeChildren();
+                        //Crear una imagen con Kinetic
+                        var image = new Kinetic.Image({
+                            x: 0,
+                            y: 0,
+                            image: this
+                        });
+                        //Añade a la capa la imagen
+                        layer.add(image);
+                        //Añade al escenario la capa
+                        layer.draw();
+                    }
+                };
+            })(file);
+
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(file);
+
+        }
     }
 
     function getExtension(url) {
@@ -89,6 +146,7 @@ var gecutimg = (function() {
                 break;
             }
         }
+
     }
 
     function drawCircles(stage, layer) {
