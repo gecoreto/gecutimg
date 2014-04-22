@@ -9,6 +9,13 @@
         <div id="contenido">
             <h1>Recorte de imagenes con canvas</h1>
             <div id="botones">
+                 <div class="inputModificado">
+                    <input class="inputImagen" id="archivo"/>
+                    <div class="botonInputFileModificado">
+                        <input type="file" class="inputImagenOculto" id="fileImg" />
+                        <div class="boton">Examinar</div>    
+                    </div>        
+                </div>
                 <button id="ctImg">Cortar Imagen</button>
                 <button id="ctFin">Finalizar Corte</button>
             </div>
@@ -25,11 +32,17 @@
         <script src="../kinetic-v5.1.0.min.js"></script>
         <script>
             (function() {
+                //Esto es solo para el estilo del input :D
+                document.getElementById("fileImg").onchange = function() {
+                    document.getElementById("archivo").value = document.getElementById("fileImg").value;
+
+                }
                 /**
                  * "ctImg" Es el id del boton que iniciara el cortado de la imagen
                  * "ctFin" Es el id del boton que finalizara el cortado de la imagen
                  * "miImg" Es el id de la imagen a cortar
                  * "miCanvas" Es el id del contenedor donde se renderiza el canvas
+                 * "fileImg" Es el id de un input para subir una imagen dinamicamente. (Este parametro no es querido)
                  */
                 gecutimg.letsCut("ctImg", "ctFin", "miImg", "miCanvas");
             })();
